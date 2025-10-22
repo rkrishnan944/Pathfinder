@@ -19,6 +19,7 @@ GREY = (128,128,128)
 TURQUOISE = (64,224,208)
 
 class Node:
+
     def __init__(self,row,col,width,total_rows) -> None:
         self.row = row 
         self.col = col 
@@ -29,6 +30,7 @@ class Node:
         self.total_rows = total_rows
 
     def make_wall(self):
+        
         self.color = BLACK
     def make_start(self):
         self.color = ORANGE
@@ -65,6 +67,7 @@ def get_clicked_pixel_pos(mouse_x,mouse_y,width,rows):
             
 
 def main():
+
     run = True 
     rows = 30 
     # Loop to run the game window forever until X is pressed on window 
@@ -104,7 +107,7 @@ def main():
                     elif cell!=start and cell!=end:
                         cell.make_wall()
 
-                # Right click to Rest Buttons 
+                # Right click to reset Buttons 
                 elif pygame.mouse.get_pressed()[2]:
                     mouse_x,mouse_y = pygame.mouse.get_pos()
                     pixel_row, pixel_col = get_clicked_pixel_pos(mouse_x,mouse_y,width,rows)
@@ -120,9 +123,9 @@ def main():
         pygame.display.update()
 
         
-
-main()
-pygame.quit()
+if __name__ == "__main__":
+    main()
+    pygame.quit()
 
 
 
