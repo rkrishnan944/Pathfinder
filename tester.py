@@ -30,7 +30,7 @@ class Node:
         self.total_rows = total_rows
 
     def make_wall(self):
-        
+
         self.color = BLACK
     def make_start(self):
         self.color = ORANGE
@@ -45,6 +45,33 @@ class Node:
 
     def get_pos(self):
         return self.row,self.col
+    
+    def is_wall(self):
+        
+        return self.color == BLACK
+    
+    def define_neigbours(self,grid):
+        
+    
+        self.neighbors = []
+
+        # Down
+        if self.row < self.total_rows - 1 and not grid[self.row + 1][self.col].is_wall():
+            self.neighbors.append(grid[self.row + 1][self.col])
+
+        # Up
+        if self.row > 0 and not grid[self.row - 1][self.col].is_wall():
+            self.neighbors.append(grid[self.row - 1][self.col])
+
+        # Right
+        if self.col < self.total_rows - 1 and not grid[self.row][self.col + 1].is_wall():
+            self.neighbors.append(grid[self.row][self.col + 1])
+
+        # Left
+        if self.col > 0 and not grid[self.row][self.col - 1].is_wall():
+            self.neighbors.append(grid[self.row][self.col - 1])
+
+
     
 
 def make_grid_matrix(width,rows):
@@ -90,6 +117,12 @@ def main():
             
             if event.type == pygame.QUIT:
                 run = False  
+
+            elif event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_SPACE and start and end:
+                    print("Start Algo")
+                    pygame.quit()
             else:
 
                 if pygame.mouse.get_pressed()[0]:
